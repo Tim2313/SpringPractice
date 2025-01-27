@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>These are all my horses!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9; /* Светлый фон */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%; /* Размер контейнера */
+            max-width: 800px; /* Максимальная ширина контейнера */
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: #666;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Horses!!!</h1>
+    <h4>List of Horses</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Breed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="horse : ${horse}">
+            <td th:text="${horse.name}">Horse Name</td>
+            <td th:text="${horse.breed}">Breed</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
