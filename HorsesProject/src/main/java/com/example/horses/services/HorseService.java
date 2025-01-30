@@ -17,6 +17,10 @@ public class HorseService {
         return horseRepository.findAll();
     }
 
+    public Horse addHorse (Horse horse) {
+        return horseRepository.save(horse);
+    }
+
     public Horse getHorseById (Long id) {
         return horseRepository.findById(id).orElse(null);
     }
