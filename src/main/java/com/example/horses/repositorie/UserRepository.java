@@ -1,6 +1,6 @@
-package com.example.horses.repositories;
+package com.example.horses.repositorie;
 
-import com.example.horses.models.User;
+import com.example.horses.api.dto.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

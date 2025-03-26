@@ -1,4 +1,4 @@
-package com.example.horses.models;
+package com.example.horses.api.dto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

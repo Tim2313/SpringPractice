@@ -1,7 +1,7 @@
-package com.example.horses.controllers;
+package com.example.horses.api.http.rest.controller;
 
-import com.example.horses.models.Horse;
-import com.example.horses.services.HorseService;
+import com.example.horses.api.dto.Horse;
+import com.example.horses.service.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
