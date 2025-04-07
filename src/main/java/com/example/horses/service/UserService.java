@@ -2,17 +2,16 @@ package com.example.horses.service;
 
 import com.example.horses.api.dto.User;
 import com.example.horses.repositorie.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Slf4j
-@RequiredArgsConstructor
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<User> listUsers() {
         return userRepository.findAll();
