@@ -1,6 +1,6 @@
 package com.example.horses.api.http.rest.controller;
 
-import com.example.horses.api.dto.Horse;
+import com.example.horses.domain.entity.Horse;
 import com.example.horses.service.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

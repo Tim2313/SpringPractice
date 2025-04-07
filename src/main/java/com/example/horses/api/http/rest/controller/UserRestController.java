@@ -1,6 +1,6 @@
 package com.example.horses.api.http.rest.controller;
 
-import com.example.horses.api.dto.User;
+import com.example.horses.domain.entity.User;
 import com.example.horses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

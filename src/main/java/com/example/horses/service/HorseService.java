@@ -1,6 +1,6 @@
 package com.example.horses.service;
 
-import com.example.horses.api.dto.Horse;
+import com.example.horses.domain.entity.Horse;
 import com.example.horses.repositorie.HorseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -23,9 +23,6 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 @Configuration
 public class SecurityConfigurer {
 
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
-
     @Bean
     public SecurityFilterChain filterChain(
             HttpSecurity http,
@@ -55,7 +52,10 @@ public class SecurityConfigurer {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(DefaultUserDetailsService defaultUserDetailsService, PasswordEncoder passwordEncoder) {
+    public AuthenticationManager authenticationManager(
+            DefaultUserDetailsService defaultUserDetailsService,
+            PasswordEncoder passwordEncoder
+    ) {
         DaoAuthenticationProvider authenticationProvider = new DefaultDaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(defaultUserDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder);
@@ -68,12 +68,17 @@ public class SecurityConfigurer {
     }
 
     @Bean
-    public DefaultBasicAuthenticationFilter defaultBasicAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public DefaultBasicAuthenticationFilter defaultBasicAuthenticationFilter(
+            AuthenticationManager authenticationManager
+    ) {
         return new DefaultBasicAuthenticationFilter(authenticationManager);
     }
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            AuthenticationManager authenticationManager,
+            JwtTokenProvider jwtTokenProvider
+    ) {
         return new JwtAuthenticationFilter(authenticationManager, jwtTokenProvider);
     }
 

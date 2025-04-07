@@ -1,16 +1,18 @@
 package com.example.horses.service.security;
 
 import com.example.horses.api.dto.security.PermissionType;
+import com.example.horses.domain.entity.User;
+import com.example.horses.excepition.EntityNotFoundException;
+import com.example.horses.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,24 +20,23 @@ import java.util.stream.Collectors;
 @Component
 public class DefaultUserDetailsService implements UserDetailsService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultUserDetailsService.class);
+
     private static final List<PermissionType> PERMISSIONS = List.of(PermissionType.HORSE_READ);
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    private static final Map<String, String> USERS_DB = Map.of(
-            "oleg.k", "P@ssword1234",
-            "mahomed.a", "P@ssword1234"
-    );
+    private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if (!USERS_DB.containsKey(username)) {
+    public UserDetails loadUserByUsername(String email) {
+        User user;
+        try {
+            user = userService.findByEmail(email);
+        } catch (EntityNotFoundException ex) {
+            LOG.warn(ex.getMessage());
             return null;
         }
 
-        String password = USERS_DB.get(username);
-        String passwordEncoded = passwordEncoder.encode(password);
         Set<SimpleGrantedAuthority> authorities = PERMISSIONS
                 .stream()
                 .filter(Objects::nonNull)
@@ -44,9 +45,8 @@ public class DefaultUserDetailsService implements UserDetailsService {
                 .collect(Collectors.toSet());
 
         return new DefaultUserDetails()
-                .setUsername(username)
-                .setPassword(passwordEncoded)
+                .setUsername(user.getEmail())
+                .setPassword(user.getPassword())
                 .setAuthorities(authorities);
     }
-
 }

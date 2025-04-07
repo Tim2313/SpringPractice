@@ -1,4 +1,4 @@
-package com.example.horses.api.dto;
+package com.example.horses.domain.entity;
 
 import jakarta.persistence.*;
 
